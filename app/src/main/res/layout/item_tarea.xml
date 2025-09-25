@@ -37,7 +37,7 @@
 
 
             <TextClock
-                android:id="@+id/tc_hora"
+                android:id="@+id/tv_hora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
