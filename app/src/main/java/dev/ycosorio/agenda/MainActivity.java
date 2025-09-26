@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -39,12 +41,34 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        
+        binding.btnGuardar.setOnClickListener(view -> {
+
+            String titulo = binding.etTitulo.getText().toString();
+            String fecha = binding.etFecha.getText().toString();
+            String hora = binding.etHora.getText().toString();
+            String descripcion = binding.etDescripcion.getText().toString();
+
+            listaEventos.add(new Evento(titulo, fecha, hora, descripcion));
+
+            adapter.notifyItemInserted(listaEventos.size() - 1);
+            binding.recyclerViewTareas.scrollToPosition(listaEventos.size() - 1);
+            // Notificar al adaptador que los datos han cambiado
+            adapter.notifyDataSetChanged();
+
+            //Limpiar los editText
+            binding.etTitulo.setText("");
+            binding.etFecha.setText("");
+            binding.etHora.setText("");
+            binding.etDescripcion.setText("");
+            view.clearFocus();
+
+            Toast.makeText(MainActivity.this, "El evento se ha registrado.", Toast.LENGTH_SHORT).show();
+        });
 
         // Inicializar RecyclerView
         initRecyclerView();
 
-        // Cargar datos
-        cargarDatos();
     }
 
     private void initRecyclerView() {
@@ -67,21 +91,5 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
-    private void cargarDatos() {
-        // Agregar todos los estudiantes del bootcamp
-        listaEventos.add(new Evento("Reunión", "10-10-2025", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Comprar supermercado", "29-09-2025", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Lavar Auto", "01-10-2025", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Hora médica", "15-11-2025", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Reunión en colegio", "25-11-2025", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Visita suegros", "12-10-2025", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Jugar a la pelota", "28-09-2025", "FutRate", "26-ago"));
-
-        // Notificar al adaptador que los datos han cambiado
-        adapter.notifyDataSetChanged();
-    }
-
-
 
 }
