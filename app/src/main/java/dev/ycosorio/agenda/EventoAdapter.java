@@ -1,10 +1,8 @@
 package dev.ycosorio.agenda;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -76,7 +74,7 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
             super(itemView);
             // Buscar y guardar las referencias a cada TextView
             tvTitulo = itemView.findViewById(R.id.tv_titulo);
-            tvHora = itemView.findViewById(R.id.tv_hora);
+            tvHora = itemView.findViewById(R.id.tc_hora);
             tvFecha = itemView.findViewById(R.id.tv_fecha);
             tvDescripcion = itemView.findViewById(R.id.tv_descripcion);
         }

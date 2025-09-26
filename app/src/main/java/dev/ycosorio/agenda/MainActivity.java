@@ -2,19 +2,19 @@ package dev.ycosorio.agenda;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import dev.ycosorio.agenda.databinding.ActivityMainBinding;
 
@@ -22,10 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private EventoAdapter adapter;
-    private List<Evento> listaEventos;
-    private NavController navController; // Declara el NavController
-    ArrayList<Evento> listaEventos = new ArrayList<>();
+    private EventoAdapter2 adapter;
+    private ArrayList<Evento> listaEventos;
 
 
     @Override
@@ -54,18 +52,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listaEventos = new ArrayList<>();
-        adapter = new EventoAdapter(listaEventos);
+        adapter = new EventoAdapter2(listaEventos);
         recyclerView.setAdapter(adapter);
-
-        listaEventos.add(new Evento("Evento1"));
-        listaEventos.add(new Evento("Evento2"));
-        listaEventos.add(new Evento("Evento3"));
-        listaEventos.add(new Evento("Evento4"));
-        listaEventos.add(new Evento("Evento5"));
-        listaEventos.add(new Evento("Evento6"));
-        listaEventos.add(new Evento("Evento7"));
-        listaEventos.add(new Evento("Evento8"));
-
 
         ExtendedFloatingActionButton botonFiltrar = binding.btnFiltrar;
 
@@ -82,13 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void cargarDatos() {
         // Agregar todos los estudiantes del bootcamp
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Reunión", "10-10-2025", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Comprar supermercado", "29-09-2025", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Lavar Auto", "01-10-2025", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Hora médica", "15-11-2025", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Reunión en colegio", "25-11-2025", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Visita suegros", "12-10-2025", "FutRate", "26-ago"));
+        listaEventos.add(new Evento("Jugar a la pelota", "28-09-2025", "FutRate", "26-ago"));
 
         // Notificar al adaptador que los datos han cambiado
         adapter.notifyDataSetChanged();

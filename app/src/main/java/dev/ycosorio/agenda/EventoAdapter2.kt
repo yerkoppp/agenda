@@ -1,15 +1,13 @@
 package dev.ycosorio.agenda
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import dev.ycosorio.agenda.databinding.ItemTareaBinding
 
 
-class EventoAdapter(private val eventos: List<Evento>) :
-    RecyclerView.Adapter<EventoAdapter.EventoViewHolder>() {
+class EventoAdapter2(private val eventos: List<Evento>) :
+    RecyclerView.Adapter<EventoAdapter2.EventoViewHolder>() {
 
 
 
@@ -33,9 +31,9 @@ class EventoAdapter(private val eventos: List<Evento>) :
 
         // 2. Usar el 'holder' para acceder a las vistas y asignar los datos
         // (Ejemplo usando View Binding, asumiendo que tienes un TextView con id 'tvTitulo' y otro 'tvHora' en item_tarea.xml)
-        holder.binding.tvTitulo.text = evento.nombre // Aquí se pone el título real
-        //holder.binding.tcHora.text = evento.hora     // Aquí se pone la hora real
-        //holder.binding.tvDescripcion.text = evento.descripcion
+        holder.binding.tvTitulo.text = evento.titulo // Aquí se pone el título real
+        holder.binding.tcHora.text = evento.hora     // Aquí se pone la hora real
+        holder.binding.tvDescripcion.text = evento.descripcion
 
         // Si tienes un dato de tipo Boolean (ej: completado)
         // holder.binding.checkBoxCompletado.isChecked = evento.estaCompletado

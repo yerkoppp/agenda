@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.ycosorio.agenda.databinding.ActivityFiltrosBinding
 
@@ -37,7 +35,7 @@ class FiltrosActivity : AppCompatActivity() {
                 layoutManager = LinearLayoutManager(this@FiltrosActivity)
 
                 // 2. Conectar el adaptador
-                adapter = EventoAdapter(lista)
+                adapter = EventoAdapter2(lista)
             }
 
             println("RecyclerView configurado con ${lista.size} tareas usando View Binding.")
