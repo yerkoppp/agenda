@@ -10,8 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoViewHolder> {
@@ -48,9 +50,13 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
         // Llenar las vistas con los datos del libro
         holder.tvTitulo.setText(evento.titulo);
         holder.tvHora.setText(evento.hora.toString());
-        holder.tvFecha.setText(evento.fecha.toString());
         holder.tvDescripcion.setText(evento.descripcion);
 
+        LocalDate fecha = evento.fecha;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu", Locale.getDefault());
+        String fechaFormateada = fecha.format(formatter);
+
+        holder.tvFecha.setText(fechaFormateada);
     }
 
 
