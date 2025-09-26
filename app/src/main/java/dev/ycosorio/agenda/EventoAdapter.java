@@ -47,8 +47,8 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
 
         // Llenar las vistas con los datos del libro
         holder.tvTitulo.setText(evento.titulo);
-        holder.tvHora.setText(evento.hora);
-        holder.tvFecha.setText(evento.fecha);
+        holder.tvHora.setText(evento.hora.toString());
+        holder.tvFecha.setText(evento.fecha.toString());
         holder.tvDescripcion.setText(evento.descripcion);
 
     }

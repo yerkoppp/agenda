@@ -32,7 +32,7 @@ class EventoAdapter2(private val eventos: List<Evento>) :
         // 2. Usar el 'holder' para acceder a las vistas y asignar los datos
         // (Ejemplo usando View Binding, asumiendo que tienes un TextView con id 'tvTitulo' y otro 'tvHora' en item_tarea.xml)
         holder.binding.tvTitulo.text = evento.titulo // Aquí se pone el título real
-        holder.binding.tcHora.text = evento.hora     // Aquí se pone la hora real
+        holder.binding.tcHora.text = evento.hora.toString()     // Aquí se pone la hora real
         holder.binding.tvDescripcion.text = evento.descripcion
 
         // Si tienes un dato de tipo Boolean (ej: completado)
