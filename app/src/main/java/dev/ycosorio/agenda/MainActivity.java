@@ -16,7 +16,12 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import dev.ycosorio.agenda.databinding.ActivityMainBinding;
 
@@ -45,9 +50,25 @@ public class MainActivity extends AppCompatActivity {
         binding.btnGuardar.setOnClickListener(view -> {
 
             String titulo = binding.etTitulo.getText().toString();
-            String fecha = binding.etFecha.getText().toString();
-            String hora = binding.etHora.getText().toString();
+            String sFecha = binding.etFecha.getText().toString();
+            String sHora = binding.etHora.getText().toString();
             String descripcion = binding.etDescripcion.getText().toString();
+
+            DateTimeFormatter fmtFecha = DateTimeFormatter.ofPattern("dd-MM-uuuu", Locale.getDefault());
+            DateTimeFormatter fmtHora  = DateTimeFormatter.ofPattern("HH:mm",      Locale.getDefault());
+
+            LocalDate fecha;
+            LocalTime hora;
+
+            try {
+                fecha = LocalDate.parse(sFecha, fmtFecha);
+                hora  = LocalTime.parse(sHora,  fmtHora);
+                // usar fecha y hora aquí
+            } catch (DateTimeParseException e) {
+                binding.etFecha.setError("Formato de fecha inválido (dd-MM-aaaa)");
+                binding.etHora.setError("Formato de hora inválido (HH:mm)");
+                return;
+            }
 
             listaEventos.add(new Evento(titulo, fecha, hora, descripcion));
 
