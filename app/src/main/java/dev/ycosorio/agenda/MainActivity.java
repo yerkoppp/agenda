@@ -1,5 +1,6 @@
 package dev.ycosorio.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private EventoAdapter adapter;
     private List<Evento> listaEventos;
     private NavController navController; // Declara el NavController
+    ArrayList<Evento> listaEventos = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,28 @@ public class MainActivity extends AppCompatActivity {
         listaEventos = new ArrayList<>();
         adapter = new EventoAdapter(listaEventos);
         recyclerView.setAdapter(adapter);
+
+        listaEventos.add(new Evento("Evento1"));
+        listaEventos.add(new Evento("Evento2"));
+        listaEventos.add(new Evento("Evento3"));
+        listaEventos.add(new Evento("Evento4"));
+        listaEventos.add(new Evento("Evento5"));
+        listaEventos.add(new Evento("Evento6"));
+        listaEventos.add(new Evento("Evento7"));
+        listaEventos.add(new Evento("Evento8"));
+
+
+        ExtendedFloatingActionButton botonFiltrar = binding.btnFiltrar;
+
+        botonFiltrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FiltrosActivity.class);
+                intent.putParcelableArrayListExtra("CLAVE_TAREAS", listaEventos);
+                startActivity(intent);
+            }
+
+        });
     }
 
     private void cargarDatos() {
