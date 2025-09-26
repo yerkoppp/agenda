@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private EventoAdapter2 adapter;
+    private EventoAdapter adapter;
     private ArrayList<Evento> listaEventos;
 
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listaEventos = new ArrayList<>();
-        adapter = new EventoAdapter2(listaEventos);
+        adapter = new EventoAdapter(listaEventos);
         recyclerView.setAdapter(adapter);
 
         ExtendedFloatingActionButton botonFiltrar = binding.btnFiltrar;
