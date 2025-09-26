@@ -9,15 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import dev.ycosorio.agenda.databinding.ActivityMainBinding;
 
@@ -25,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private EventoAdapter adapter;
-    private List<Evento> listaEventos;
-    private NavController navController; // Declara el NavController
+    private EventoAdapter2 adapter;
+    private ArrayList<Evento> listaEventos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +76,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listaEventos = new ArrayList<>();
-        adapter = new EventoAdapter(listaEventos);
+        adapter = new EventoAdapter2(listaEventos);
         recyclerView.setAdapter(adapter);
+
+        ExtendedFloatingActionButton botonFiltrar = binding.btnFiltrar;
+
+        botonFiltrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FiltrosActivity.class);
+                intent.putParcelableArrayListExtra("CLAVE_TAREAS", listaEventos);
+                startActivity(intent);
+            }
+
+        });
     }
 
 }

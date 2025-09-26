@@ -1,6 +1,9 @@
 package dev.ycosorio.agenda;
 
-public class Evento {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Evento implements Parcelable{
 
     private String titulo;
     private String fecha;
@@ -13,6 +16,39 @@ public class Evento {
         this.hora = hora;
         this.descripcion = descripcion;
     }
+
+
+    protected Evento(Parcel in) {
+        titulo = in.readString();
+        fecha = in.readString();
+        hora = in.readString();
+        descripcion = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(titulo);
+        dest.writeString(fecha);
+        dest.writeString(hora);
+        dest.writeString(descripcion);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Evento> CREATOR = new Creator<Evento>() {
+        @Override
+        public Evento createFromParcel(Parcel in) {
+            return new Evento(in);
+        }
+
+        @Override
+        public Evento[] newArray(int size) {
+            return new Evento[size];
+        }
+    };
 
     public String getTitulo() {
         return titulo;
@@ -41,8 +77,8 @@ public class Evento {
     public String getDescripcion() {
         return descripcion;
     }
+        public void setDescripcion (String descripcion){
+            this.descripcion = descripcion;
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        }
     }
-}

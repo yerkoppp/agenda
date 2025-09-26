@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     implementation(libs.google.gson)
     androidTestImplementation(libs.androidx.junit)

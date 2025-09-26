@@ -13,6 +13,7 @@ firebaseCrashlyticsBuildtools = "3.0.6"
 androidDesugarJdkLibs = "2.0.4"
 gson = "2.10.1"
 navigationFragment = "2.9.4"
+recyclerview = "1.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +28,7 @@ firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "fireb
 android-desugar-jdk-libs = { group = "com.android.tools", name = "desugar-jdk-libs", version.ref = "androidDesugarJdkLibs" }
 google-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
