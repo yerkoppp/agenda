@@ -1,6 +1,8 @@
 package dev.ycosorio.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +42,34 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        
+        binding.btnGuardar.setOnClickListener(view -> {
+
+            String titulo = binding.etTitulo.getText().toString();
+            String fecha = binding.etFecha.getText().toString();
+            String hora = binding.etHora.getText().toString();
+            String descripcion = binding.etDescripcion.getText().toString();
+
+            listaEventos.add(new Evento(titulo, fecha, hora, descripcion));
+
+            adapter.notifyItemInserted(listaEventos.size() - 1);
+            binding.recyclerViewTareas.scrollToPosition(listaEventos.size() - 1);
+            // Notificar al adaptador que los datos han cambiado
+            adapter.notifyDataSetChanged();
+
+            //Limpiar los editText
+            binding.etTitulo.setText("");
+            binding.etFecha.setText("");
+            binding.etHora.setText("");
+            binding.etDescripcion.setText("");
+            view.clearFocus();
+
+            Toast.makeText(MainActivity.this, "El evento se ha registrado.", Toast.LENGTH_SHORT).show();
+        });
 
         // Inicializar RecyclerView
         initRecyclerView();
 
-        // Cargar datos
-        cargarDatos();
     }
 
     private void initRecyclerView() {
@@ -54,21 +80,5 @@ public class MainActivity extends AppCompatActivity {
         adapter = new EventoAdapter(listaEventos);
         recyclerView.setAdapter(adapter);
     }
-
-    private void cargarDatos() {
-        // Agregar todos los estudiantes del bootcamp
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-        listaEventos.add(new Evento("Diego", "Alarcon", "FutRate", "26-ago"));
-
-        // Notificar al adaptador que los datos han cambiado
-        adapter.notifyDataSetChanged();
-    }
-
-
 
 }
